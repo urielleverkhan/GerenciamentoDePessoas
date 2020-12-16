@@ -1,7 +1,7 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.controller;
 
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.MessageREsponseDTO;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageREsponseDTO createPerson(@RequestBody Person person) {
+    public MessageResponseDTO createPerson(@RequestBody Person person) {
         return personService.createPerson(person);
     }
 }

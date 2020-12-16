@@ -5,7 +5,7 @@ import jdk.internal.joptsimple.internal.Messages;
 import lombok.Builder;
 
 @Builder
-public class MessageREsponseDTO {
+public class MessageResponseDTO {
    private String message;
 
     public String getMessage() {
@@ -16,11 +16,11 @@ public class MessageREsponseDTO {
         this.message = message;
     }
 
-    public MessageREsponseDTO(String message) {
+    public MessageResponseDTO(String message) {
         this.message = message;
     }
 
-    public MessageREsponseDTO() {
+    public MessageResponseDTO() {
 
     }
 
