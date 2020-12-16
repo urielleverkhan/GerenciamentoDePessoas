@@ -1,6 +1,7 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.service;
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.MessageResponseDTO;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,15 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public MessageResponseDTO createPerson(Person person) {
-        Person savedPerson = personRepository.save(person);
+    public MessageResponseDTO createPerson(PersonDTO personDTO) {
+
+        Person personToSave = new Person(personDTO.getFirstName(),
+                                         personDTO.getLastName(),
+                                         personDTO.getCpf(),
+                                         personDTO.getBirthDate(),
+                                         personDTO.getPhones() );
+
+        PersonDTO savedPerson = personRepository.save(personDTO);
         return new MessageResponseDTO("Create person with ID " + savedPerson.getId());
 
     }

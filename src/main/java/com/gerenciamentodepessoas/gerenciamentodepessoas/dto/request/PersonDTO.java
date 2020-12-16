@@ -1,35 +1,35 @@
-package com.gerenciamentodepessoas.gerenciamentodepessoas.entity;
+package com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request;
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PhoneDTO;
+import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
-
-//Não consegui fazer o Lombok funcionar, por isto desenvolvi esta api sem o Lombok e por isto esta um pouco diferente do video.
-@Entity
-public class Person {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PersonDTO {
     private Long id;
 
-    @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 2, max = 100)
     private String firstName;
 
-    @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 2, max = 100)
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @NotEmpty
+    @CPF
     private String cpf;
 
-    private LocalDate birthDate;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Phone> phones;
+    private String birthDate;
 
-    public Person(Long id, String firstName, String lastName, String cpf, LocalDate birthDate, List<Phone> phones) {
+    @Valid
+    @NotEmpty
+    private List<PhoneDTO> phones;
+
+    public PersonDTO(Long id, String firstName, String lastName, String cpf, String birthDate, List<PhoneDTO> phones) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,7 +38,8 @@ public class Person {
         this.phones = phones;
     }
 
-    public Person( String firstName, String lastName, String cpf, LocalDate birthDate, List<Phone> phones) {
+    public PersonDTO( String firstName, String lastName, String cpf, String birthDate, List<PhoneDTO> phones) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
@@ -46,8 +47,7 @@ public class Person {
         this.phones = phones;
     }
 
-    public Person(){}
-
+    public PersonDTO(){}
 
     public Long getId() {
         return id;
@@ -81,19 +81,19 @@ public class Person {
         this.cpf = cpf;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public List<Phone> getPhones() {
+    public List<PhoneDTO> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(List<PhoneDTO> phones) {
         this.phones = phones;
     }
 }

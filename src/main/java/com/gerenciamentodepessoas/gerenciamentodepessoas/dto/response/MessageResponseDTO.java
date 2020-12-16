@@ -1,4 +1,4 @@
-package com.gerenciamentodepessoas.gerenciamentodepessoas.dto;
+package com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response;
 
 
 

@@ -1,12 +1,14 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.controller;
 
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.MessageResponseDTO;
-import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 //Não consegui fazer o Lombok funcionar, por isto desenvolvi esta api sem o Lombok e por isto esta um pouco diferente do video.
 @RestController
@@ -23,7 +25,7 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody Person person) {
-        return personService.createPerson(person);
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
+        return personService.createPerson(personDTO);
     }
 }
