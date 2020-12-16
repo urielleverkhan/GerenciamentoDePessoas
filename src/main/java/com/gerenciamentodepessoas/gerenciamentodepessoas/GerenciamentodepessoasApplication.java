@@ -11,20 +11,12 @@ import java.util.List;
 
 @SpringBootApplication
 public class GerenciamentodepessoasApplication {
-	Person pessoas = new Person();
-    Phone tel = new Phone();
-
-    List lista = new ArrayList<Integer>();
-
-     System.out.println()
+		public static void main(String[] args) {
+				SpringApplication.run(GerenciamentodepessoasApplication.class, args);
 
 
 
 
-
-
-	public static void main(String[] args) {
-		SpringApplication.run(GerenciamentodepessoasApplication.class, args);
-	}
+		}
 
 }
