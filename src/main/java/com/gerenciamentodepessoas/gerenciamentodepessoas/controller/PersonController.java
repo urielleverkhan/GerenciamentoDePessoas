@@ -1,14 +1,26 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.MessageREsponseDTO;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/people")
 public class PersonController {
-    @GetMapping
-    public String getBook(){
-        return "API Test!. 222";
+
+
+
+
+    private PersonRepository personRepository;
+
+    @Autowired
+    public PersonController(PersonRepository personRepository){
+        this.personRepository = personRepository;
     }
+
+
+
 }
