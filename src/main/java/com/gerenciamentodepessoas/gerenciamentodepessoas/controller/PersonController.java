@@ -4,6 +4,7 @@ package com.gerenciamentodepessoas.gerenciamentodepessoas.controller;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.exeption.PersonNotFoudException;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,5 +35,10 @@ public class PersonController {
     @GetMapping
     public List<Person> listAll(){
         return personService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public Person findById(@PathVariable Long id) throws PersonNotFoudException {
+        return personService.findById(id);
     }
 }

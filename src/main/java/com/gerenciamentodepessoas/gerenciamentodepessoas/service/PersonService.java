@@ -3,12 +3,16 @@ package com.gerenciamentodepessoas.gerenciamentodepessoas.service;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.exeption.PersonNotFoudException;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.mapper.PersonMapper;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,5 +41,12 @@ public class PersonService {
         List<Person> allPeople = personRepository.findAll();
 
         return allPeople.stream().map(personMapper::toDTO).collect(Collectors.toList());
+    }
+
+
+    public Person findById(Long id) throws PersonNotFoudException {
+        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoudException(id));
+
+        return personMapper.toDTO(person);
     }
 }
