@@ -14,6 +14,9 @@ http://localhost:8080/api/v1/people
 Para verificar o banco de dados em memoria do projeto, pode-se usar o seguinte endereço:
 http://localhost:8080/h2-console
 
+Endereço para acessar a versão em nuvem:
+https://peopleapi-live-naira.herokuapp.com/api/v1/people
+
 Foram empregadas as seguintes tecnologias neste projeto:
 
 •	Java 11
