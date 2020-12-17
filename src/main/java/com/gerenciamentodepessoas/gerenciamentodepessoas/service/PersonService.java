@@ -34,7 +34,7 @@ public class PersonService {
 
     public PersonDTO findById(Long id) throws PersonNotFoudException {
         Person person = personRepository.findById(id)
-                .orElseThrow(() -> new PersistenceException(String.valueOf(id)));
+                .orElseThrow(() -> new PersonNotFoudException(id));
 
         return personMapper.toDTO(person);
     }
@@ -60,7 +60,7 @@ public class PersonService {
 
     public void delete(Long id) throws PersonNotFoudException {
         personRepository.findById(id)
-                .orElseThrow(() -> new PersistenceException(String.valueOf(id)));
+                .orElseThrow(() -> new PersonNotFoudException(id));
 
         personRepository.deleteById(id);
     }
