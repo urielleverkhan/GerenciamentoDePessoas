@@ -1,16 +1,18 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+import java.util.List;
 
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.exeption.PersonNotFoudException;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
+
+
 
 
 @RestController

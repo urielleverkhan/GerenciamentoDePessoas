@@ -1,10 +1,9 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.entity;
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.enums.PhoneType;
+import javax.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
-
+import com.gerenciamentodepessoas.gerenciamentodepessoas.enums.PhoneType;
 
 
 @Entity

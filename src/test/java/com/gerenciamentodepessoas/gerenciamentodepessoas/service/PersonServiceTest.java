@@ -1,21 +1,23 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.service;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.mapper.PersonMapper;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.repository.PersonRepository;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.utils.PersonUtils;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)

@@ -1,13 +1,12 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request;
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.enums.PhoneType;
-import lombok.*;
-
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import lombok.*;
 
+import com.gerenciamentodepessoas.gerenciamentodepessoas.enums.PhoneType;
 
 @Data
 @AllArgsConstructor

@@ -1,11 +1,9 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.entity;
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PhoneDTO;
-import lombok.*;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import lombok.*;
 
 
 

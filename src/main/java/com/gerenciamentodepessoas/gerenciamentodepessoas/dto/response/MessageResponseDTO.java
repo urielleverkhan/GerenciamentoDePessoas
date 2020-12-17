@@ -1,7 +1,5 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response;
 
-
-
 import lombok.Builder;
 import lombok.Data;
 

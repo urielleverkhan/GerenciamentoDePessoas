@@ -1,11 +1,10 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.utils;
 
-import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
-import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
-
-
 import java.time.LocalDate;
 import java.util.Collections;
+
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
 
 
 public class PersonUtils {
