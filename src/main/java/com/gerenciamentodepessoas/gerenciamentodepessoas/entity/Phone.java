@@ -1,12 +1,18 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.entity;
 
 import com.gerenciamentodepessoas.gerenciamentodepessoas.enums.PhoneType;
+import lombok.*;
 
 import javax.persistence.*;
 
 
 //Não consegui fazer o Lombok funcionar, por isto desenvolvi esta api sem o Lombok e por isto esta um pouco diferente do video.
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Phone {
 
     @Id
@@ -20,39 +26,5 @@ public class Phone {
     @Column(nullable = false)
     private String number;
 
-    public Phone(Long id, PhoneType type, String number) {
-        this.id = id;
-        this.type = type;
-        this.number = number;
-    }
 
-    public Phone(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public PhoneType getType() {
-        return type;
-    }
-
-    public void setType(PhoneType type) {
-        this.type = type;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public int soma(int a, int b){
-        return a + b;
-    }
 }

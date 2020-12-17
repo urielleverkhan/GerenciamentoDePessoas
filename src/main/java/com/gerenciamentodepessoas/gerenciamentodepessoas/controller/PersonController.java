@@ -3,7 +3,6 @@ package com.gerenciamentodepessoas.gerenciamentodepessoas.controller;
 
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
-import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.exeption.PersonNotFoudException;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,23 +28,23 @@ public class PersonController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
-        return personService.createPerson(personDTO);
+        return personService.create(personDTO);
     }
 
     @GetMapping
-    public List<Person> listAll(){
+    public List<PersonDTO> listAll(){
         return personService.listAll();
     }
 
     @GetMapping("/{id}")
-    public Person findById(@PathVariable Long id) throws PersonNotFoudException {
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoudException {
         return personService.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws  PersonNotFoudException{
-        return personService.updateById(id, personDTO);
+        return personService.update(id, personDTO);
     }
 
     @DeleteMapping("/{id}")
