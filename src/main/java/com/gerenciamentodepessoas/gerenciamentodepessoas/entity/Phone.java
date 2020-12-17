@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 
-//Não consegui fazer o Lombok funcionar, por isto desenvolvi esta api sem o Lombok e por isto esta um pouco diferente do video.
+
 @Entity
 @Getter
 @Setter
