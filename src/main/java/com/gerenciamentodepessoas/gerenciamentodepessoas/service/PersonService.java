@@ -1,73 +1,74 @@
 package com.gerenciamentodepessoas.gerenciamentodepessoas.service;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import javax.persistence.PersistenceException;
+import java.util.stream.Collectors;
+import java.util.List;
+import lombok.AllArgsConstructor;
+
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.request.PersonDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.response.MessageResponseDTO;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.entity.Person;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.exeption.PersonNotFoudException;
-import com.gerenciamentodepessoas.gerenciamentodepessoas.mapper.PersonMapper;
+import com.gerenciamentodepessoas.gerenciamentodepessoas.dto.mapper.PersonMapper;
 import com.gerenciamentodepessoas.gerenciamentodepessoas.repository.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
-    private final PersonMapper personMapper = PersonMapper.INSTANCE;
+    private final PersonMapper personMapper;
 
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
+    public MessageResponseDTO create(PersonDTO personDTO) {
+        Person person = personMapper.toModel(personDTO);
+        Person savedPerson = personRepository.save(person);
+
+        MessageResponseDTO messageResponse = createMessageResponse("Person successfully created with ID ", savedPerson.getId());
+
+        return messageResponse;
     }
 
-    public MessageResponseDTO createPerson(PersonDTO personDTO) {
-
-        Person personToSave = personMapper.toModel(personDTO);
-
-        Person savedPerson = personRepository.save(personToSave);
-        return createMessageResponse(savedPerson.getId(), "Create person with ID ");
-
-    }
-
-
-    public List<Person> listAll() {
-        List<Person> allPeople = personRepository.findAll();
-
-        return allPeople.stream().map(personMapper::toDTO).collect(Collectors.toList());
-    }
-
-
-    public Person findById(Long id) throws PersonNotFoudException {
-        Person person = verifyIfExists(id);
+    public PersonDTO findById(Long id) throws PersonNotFoudException {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoudException(id));
 
         return personMapper.toDTO(person);
     }
 
+    public List<PersonDTO> listAll() {
+        List<Person> people = personRepository.findAll();
+        return people.stream()
+                .map(personMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 
-    public void delete(Long id) throws PersonNotFoudException{
-        Person person = verifyIfExists(id);
+    public MessageResponseDTO update(Long id, PersonDTO personDTO) throws PersonNotFoudException {
+        personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoudException(id));
+
+        Person updatedPerson = personMapper.toModel(personDTO);
+        Person savedPerson = personRepository.save(updatedPerson);
+
+        MessageResponseDTO messageResponse = createMessageResponse("Person successfully updated with ID ", savedPerson.getId());
+
+        return messageResponse;
+    }
+
+    public void delete(Long id) throws PersonNotFoudException {
+        personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoudException(id));
 
         personRepository.deleteById(id);
     }
 
-    public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoudException {
-        verifyIfExists(id);
-
-        Person personToUpdate = personMapper.toModel(personDTO);
-
-        Person updatedPerson = personRepository.save(personToUpdate);
-        return createMessageResponse(updatedPerson.getId(), "Update person with ID ");
-    }
-
-    private Person verifyIfExists(Long id) throws PersonNotFoudException {
-        return personRepository.findById(id).orElseThrow(() -> new PersonNotFoudException(id));
-    }
-
-    private MessageResponseDTO createMessageResponse(Long id, String message) {
-        return new MessageResponseDTO(message + id);
+    private MessageResponseDTO createMessageResponse(String s, Long id2) {
+        return MessageResponseDTO.builder()
+                .message(s + id2)
+                .build();
     }
 }
+
