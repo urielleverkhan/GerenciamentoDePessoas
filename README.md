@@ -1,8 +1,10 @@
+
 #Digital Innovation: Desenvolvendo um sistema de gerenciamento de pessoas em API REST com Spring Boot.
 
 Este projeto foi feito seguindo uma live para o bootcamp da Everis da plataforma Digital Innovation One.
 
 Por eu ter tido muita dificuldade em fazer o Lombok funcionar, parte do projeto está implementado sem este recurso. 
+
 
 Após executar o projeto no terminal usando o seguinte comando:
 
@@ -16,6 +18,7 @@ http://localhost:8080/h2-console
 
 Endereço para acessar a versão em nuvem:
 https://peopleapi-live-naira.herokuapp.com/api/v1/people
+
 
 Foram empregadas as seguintes tecnologias neste projeto:
 
